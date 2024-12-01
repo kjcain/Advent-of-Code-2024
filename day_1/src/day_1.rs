@@ -1,0 +1,116 @@
+use std::path::PathBuf;
+
+pub fn load_locations(path: PathBuf) -> (Vec<i64>, Vec<i64>) {
+    let input = std::fs::read_to_string(path).unwrap();
+
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for line in input.lines() {
+        let mut parts = line.split_whitespace();
+        left.push(parts.next().unwrap().parse().unwrap());
+        right.push(parts.next().unwrap().parse().unwrap());
+    }
+
+    (left, right)
+}
+
+pub fn part_1(left: Vec<i64>, right: Vec<i64>) -> i64 {
+    // sort both lists
+    let mut left = left;
+    let mut right = right;
+
+    left.sort();
+    right.sort();
+
+    // calculate distance for all pairs
+    let mut result = 0;
+
+    for i in 0..left.len() {
+        result += (left[i] - right[i]).abs();
+    }
+
+    result
+}
+
+pub fn part_2(left: Vec<i64>, right: Vec<i64>) -> i64 {
+    // count how many times each number appears in the right list
+    let mut right_count = std::collections::HashMap::new();
+
+    for i in 0..right.len() {
+        *right_count.entry(right[i]).or_insert(0) += 1;
+    }
+
+    let mut result = 0;
+
+    for i in 0..left.len() {
+        if !right_count.contains_key(&left[i]) {
+            continue;
+        }
+
+        result += left[i] * right_count[&left[i]];
+    }
+
+    result
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn day_1_part_1_example() {
+        let input = PathBuf::from("input_example.txt");
+        let output = PathBuf::from("output_example_part_1.txt");
+
+        let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
+
+        let (left, right) = load_locations(input);
+
+        let result = part_1(left, right);
+        
+        assert_eq!(result, expected_result);
+    }
+
+    #[test]
+    fn day_1_part_1() {
+        let input = PathBuf::from("input.txt");
+        let output = PathBuf::from("output_part_1.txt");
+
+        let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
+
+        let (left, right) = load_locations(input);
+
+        let result = part_1(left, right);
+        
+        assert_eq!(result, expected_result);
+    }
+
+    #[test]
+    fn day_1_part_2_example() {
+        let input = PathBuf::from("input_example.txt");
+        let output = PathBuf::from("output_example_part_2.txt");
+
+        let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
+
+        let (left, right) = load_locations(input);
+
+        let result = part_2(left, right);
+        
+        assert_eq!(result, expected_result);
+    }
+
+    #[test]
+    fn day_1_part_2() {
+        let input = PathBuf::from("input.txt");
+        let output = PathBuf::from("output_part_2.txt");
+
+        let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
+
+        let (left, right) = load_locations(input);
+
+        let result = part_2(left, right);
+        
+        assert_eq!(result, expected_result);
+    }
+}
