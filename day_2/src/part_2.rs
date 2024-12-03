@@ -103,17 +103,17 @@ mod tests {
         assert_eq!(result, expected_result);
     }
 
-    // #[test]
-    // fn day_2_part_2() {
-    //     let input = PathBuf::from("input.txt");
-    //     let output = PathBuf::from("output_part_2.txt");
+    #[test]
+    fn day_2_part_2() {
+        let input = PathBuf::from("input.txt");
+        let output = PathBuf::from("output_part_2.txt");
 
-    //     let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
+        let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
 
-    //     let reports = load_reports(input);
+        let reports = load_reports(input);
 
-    //     let result = part_2(reports);
+        let result = part_2(reports);
 
-    //     assert_eq!(result, expected_result);
-    // }
+        assert_eq!(result, expected_result);
+    }
 }
