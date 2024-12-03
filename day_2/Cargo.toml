@@ -1,14 +1,14 @@
 [package]
-name = "day_1"
+name = "day_2"
 version = "0.1.0"
 edition = "2021"
 
 [[bin]]
-name = "day_1_part_1"
+name = "day_2_part_1"
 path = "src/part_1.rs"
 
 [[bin]]
-name = "day_1_part_2"
+name = "day_2_part_2"
 path = "src/part_2.rs"
 
 [dependencies]
