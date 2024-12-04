@@ -41,10 +41,6 @@ fn part_1(reports: Vec<Vec<i64>>) -> i64 {
 }
 
 fn main() {
-    // print the pwd
-    let pwd = std::env::current_dir().unwrap();
-    println!("Current directory: {:?}", pwd);
-
     let input = PathBuf::from("day_2/input.txt");
     let output = PathBuf::from("day_2/output_part_1.txt");
 
