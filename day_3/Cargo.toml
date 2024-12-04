@@ -1,0 +1,15 @@
+[package]
+name = "day_3"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "day_3_part_1"
+path = "src/part_1.rs"
+
+[[bin]]
+name = "day_3_part_2"
+path = "src/part_2.rs"
+
+[dependencies]
+regex = "1.11.1"
