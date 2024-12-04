@@ -22,14 +22,17 @@ fn part_2_safety(report: Vec<i64>) -> bool {
     let increasing = report[0] < report[1];
 
     for i in 1..report.len() {
-        let diff = report[i] - report[i - 1];
-        let abs_diff = diff.abs();
+        let curr = report[i - 1];
+        let next = report[i];
+
+        let locally_increasing = next > curr;
+        let abs_diff = next.abs_diff(curr);
 
         if abs_diff > 3 || abs_diff < 1 {
             return false;
         }
 
-        if (diff > 0) != increasing {
+        if locally_increasing != increasing {
             return false
         }
     }
