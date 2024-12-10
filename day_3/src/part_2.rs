@@ -2,7 +2,11 @@ use regex::Regex;
 use std::path::PathBuf;
 
 fn load_program(path: PathBuf) -> String {
-    std::fs::read_to_string(path).unwrap().replace("\n", "")
+    std::fs::read_to_string(path)
+        .unwrap()
+        .trim_end()
+        .to_string()
+        .replace("\n", "")
 }
 
 fn part_2(program: String) -> i64 {
@@ -34,7 +38,12 @@ fn main() {
 
     // if output is present, check if the result is correct
     if output.exists() {
-        let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
+        let expected_result: i64 = std::fs::read_to_string(output)
+            .unwrap()
+            .trim_end()
+            .to_string()
+            .parse()
+            .unwrap();
         assert_eq!(result, expected_result);
     } else {
         std::fs::write(output, result.to_string()).unwrap();
@@ -50,7 +59,12 @@ mod tests {
         let input = PathBuf::from("input_example_part_2.txt");
         let output = PathBuf::from("output_example_part_2.txt");
 
-        let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
+        let expected_result: i64 = std::fs::read_to_string(output)
+            .unwrap()
+            .trim_end()
+            .to_string()
+            .parse()
+            .unwrap();
 
         let program = load_program(input);
 
@@ -64,7 +78,12 @@ mod tests {
         let input = PathBuf::from("input.txt");
         let output = PathBuf::from("output_part_2.txt");
 
-        let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
+        let expected_result: i64 = std::fs::read_to_string(output)
+            .unwrap()
+            .trim_end()
+            .to_string()
+            .parse()
+            .unwrap();
 
         let program = load_program(input);
 

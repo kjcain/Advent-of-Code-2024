@@ -1,7 +1,10 @@
 use std::path::PathBuf;
 
 pub fn load_locations(path: PathBuf) -> (Vec<i64>, Vec<i64>) {
-    let input = std::fs::read_to_string(path).unwrap();
+    let input = std::fs::read_to_string(path)
+        .unwrap()
+        .trim_end()
+        .to_string();
 
     let mut left = Vec::new();
     let mut right = Vec::new();
@@ -49,7 +52,12 @@ fn main() {
 
     // if output is present, check if the result is correct
     if output.exists() {
-        let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
+        let expected_result: i64 = std::fs::read_to_string(output)
+            .unwrap()
+            .trim_end()
+            .to_string()
+            .parse()
+            .unwrap();
         assert_eq!(result, expected_result);
     } else {
         std::fs::write(output, result.to_string()).unwrap();
@@ -65,7 +73,12 @@ mod tests {
         let input = PathBuf::from("input_example.txt");
         let output = PathBuf::from("output_example_part_1.txt");
 
-        let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
+        let expected_result: i64 = std::fs::read_to_string(output)
+            .unwrap()
+            .trim_end()
+            .to_string()
+            .parse()
+            .unwrap();
 
         let (left, right) = load_locations(input);
 
@@ -79,7 +92,12 @@ mod tests {
         let input = PathBuf::from("input.txt");
         let output = PathBuf::from("output_part_1.txt");
 
-        let expected_result: i64 = std::fs::read_to_string(output).unwrap().parse().unwrap();
+        let expected_result: i64 = std::fs::read_to_string(output)
+            .unwrap()
+            .trim_end()
+            .to_string()
+            .parse()
+            .unwrap();
 
         let (left, right) = load_locations(input);
 

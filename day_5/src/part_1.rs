@@ -4,7 +4,10 @@ static DAY: &str = "day_5";
 static PART: &str = "part_1";
 
 fn load_problem(path: PathBuf) -> String {
-    std::fs::read_to_string(path).expect("Error reading file")
+    std::fs::read_to_string(path)
+        .expect("Error reading file")
+        .trim_end()
+        .to_string()
 }
 
 fn extract_problem(problem: &str) -> (HashMap<i64, Vec<i64>>, Vec<Vec<i64>>) {
@@ -79,6 +82,8 @@ fn test_solution(input_path: PathBuf, output_path: PathBuf, write_output: bool) 
     if output_path.exists() {
         let expected_result: i64 = std::fs::read_to_string(output_path)
             .unwrap()
+            .trim_end()
+            .to_string()
             .parse()
             .unwrap();
 
