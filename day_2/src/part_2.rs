@@ -14,7 +14,6 @@ fn load_reports(path: PathBuf) -> Vec<Vec<i64>> {
 }
 
 fn part_2_safety(report: Vec<i64>) -> bool {
-
     if report.len() < 2 {
         return false;
     }
@@ -33,7 +32,7 @@ fn part_2_safety(report: Vec<i64>) -> bool {
         }
 
         if locally_increasing != increasing {
-            return false
+            return false;
         }
     }
 
@@ -47,7 +46,7 @@ fn part_2_safety_shotgun(report: Vec<i64>) -> bool {
         return true;
     }
 
-    if ! safe_as_is {
+    if !safe_as_is {
         for i in 0..report.len() {
             let mut report = report.clone();
             report.remove(i);
@@ -62,7 +61,10 @@ fn part_2_safety_shotgun(report: Vec<i64>) -> bool {
 }
 
 fn part_2(reports: Vec<Vec<i64>>) -> i64 {
-    reports.iter().filter(|&report| part_2_safety_shotgun(report.to_vec())).count() as i64
+    reports
+        .iter()
+        .filter(|&report| part_2_safety_shotgun(report.to_vec()))
+        .count() as i64
 }
 
 fn main() {

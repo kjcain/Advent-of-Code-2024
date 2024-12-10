@@ -45,7 +45,9 @@ fn is_properly_ordered(ordering_rules: &HashMap<i64, Vec<i64>>, update: &[i64]) 
         let left = update[i];
 
         for update_item in update.iter().skip(i + 1) {
-            if ordering_rules.contains_key(update_item) && ordering_rules[update_item].contains(&left) {
+            if ordering_rules.contains_key(update_item)
+                && ordering_rules[update_item].contains(&left)
+            {
                 return false;
             }
         }

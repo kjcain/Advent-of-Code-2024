@@ -32,7 +32,7 @@ fn part_1_safety(report: Vec<i64>) -> bool {
         }
 
         if locally_increasing != increasing {
-            return false
+            return false;
         }
     }
 
@@ -40,7 +40,10 @@ fn part_1_safety(report: Vec<i64>) -> bool {
 }
 
 fn part_1(reports: Vec<Vec<i64>>) -> i64 {
-    reports.iter().filter(|&report| part_1_safety(report.to_vec())).count() as i64
+    reports
+        .iter()
+        .filter(|&report| part_1_safety(report.to_vec()))
+        .count() as i64
 }
 
 fn main() {

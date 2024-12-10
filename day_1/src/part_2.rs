@@ -63,7 +63,6 @@ fn main() {
 mod tests {
     use super::*;
 
-
     #[test]
     fn day_1_part_2_example() {
         let input = PathBuf::from("input_example.txt");
@@ -74,7 +73,7 @@ mod tests {
         let (left, right) = load_locations(input);
 
         let result = part_2(left, right);
-        
+
         assert_eq!(result, expected_result);
     }
 
@@ -88,7 +87,7 @@ mod tests {
         let (left, right) = load_locations(input);
 
         let result = part_2(left, right);
-        
+
         assert_eq!(result, expected_result);
     }
 }

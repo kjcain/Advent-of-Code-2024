@@ -1,5 +1,5 @@
-use std::path::PathBuf;
 use regex::Regex;
+use std::path::PathBuf;
 
 fn load_program(path: PathBuf) -> String {
     std::fs::read_to_string(path).unwrap()
@@ -8,11 +8,14 @@ fn load_program(path: PathBuf) -> String {
 fn part_1(program: String) -> i64 {
     let mul_regex = Regex::new(r"mul\((?<l>\d+),(?<r>\d+)\)").unwrap();
 
-    mul_regex.captures_iter(&program).map(|cap| {
-        let l: i64 = cap["l"].parse().unwrap();
-        let r: i64 = cap["r"].parse().unwrap();
-        l * r
-    }).sum()
+    mul_regex
+        .captures_iter(&program)
+        .map(|cap| {
+            let l: i64 = cap["l"].parse().unwrap();
+            let r: i64 = cap["r"].parse().unwrap();
+            l * r
+        })
+        .sum()
 }
 
 fn main() {

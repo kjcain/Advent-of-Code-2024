@@ -70,7 +70,7 @@ mod tests {
         let (left, right) = load_locations(input);
 
         let result = part_1(left, right);
-        
+
         assert_eq!(result, expected_result);
     }
 
@@ -84,7 +84,7 @@ mod tests {
         let (left, right) = load_locations(input);
 
         let result = part_1(left, right);
-        
+
         assert_eq!(result, expected_result);
     }
 }
