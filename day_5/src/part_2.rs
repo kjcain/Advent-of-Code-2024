@@ -37,20 +37,16 @@ fn extract_problem(problem: &str) -> (HashMap<i64, Vec<i64>>, Vec<Vec<i64>>) {
     (ordering_rules, updates)
 }
 
-fn is_properly_ordered(ordering_rules: &HashMap<i64, Vec<i64>>, update: &Vec<i64>) -> bool {
+fn is_properly_ordered(ordering_rules: &HashMap<i64, Vec<i64>>, update: &[i64]) -> bool {
     // attempting w/o recursion for now
 
     // left must come before all right
     for i in 0..update.len() {
         let left = update[i];
 
-        for j in i + 1..update.len() {
-            let right = update[j];
-
-            if ordering_rules.contains_key(&right) {
-                if ordering_rules[&right].contains(&left) {
-                    return false;
-                }
+        for update_item in update.iter().skip(i + 1) {
+            if ordering_rules.contains_key(update_item) && ordering_rules[update_item].contains(&left) {
+                return false;
             }
         }
     }
@@ -58,12 +54,10 @@ fn is_properly_ordered(ordering_rules: &HashMap<i64, Vec<i64>>, update: &Vec<i64
     true
 }
 
-fn order_update(ordering_rules: &HashMap<i64, Vec<i64>>, update: &Vec<i64>) -> Vec<i64> {
+fn order_update(ordering_rules: &HashMap<i64, Vec<i64>>, update: &[i64]) -> Vec<i64> {
     let mut ordered_update = Vec::new();
 
-    for i in 0..update.len() {
-        let new_page = update[i];
-
+    for &new_page in update {
         if ordered_update.is_empty() {
             ordered_update.push(new_page);
         } else {

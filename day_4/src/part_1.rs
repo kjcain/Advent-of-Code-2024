@@ -25,7 +25,7 @@ impl PartialEq for Match {
 }
 
 fn search_2d_part(
-    problem: &Vec<Vec<char>>,
+    problem: &[Vec<char>],
     search_str: &str,
     start_x: i32,
     start_y: i32,
@@ -70,26 +70,24 @@ fn search_2d_part(
 }
 
 fn search_2d(
-    problem: &Vec<Vec<char>>,
+    problem: &[Vec<char>],
     search_str: &str,
     start_x: usize,
     start_y: usize,
 ) -> Vec<Match> {
     let mut matches: Vec<Match> = Vec::new();
 
-    let search_steps = vec![
-        (1, 0),   // right
+    let search_steps = [(1, 0),   // right
         (1, -1),  // down-right
         (0, -1),  // down
         (-1, -1), // down-left
         (-1, 0),  // left
         (-1, 1),  // up-left
         (0, 1),   // up
-        (1, 1),   // up-right
-    ];
+        (1, 1)];
 
     for search_step in search_steps.iter() {
-        match search_2d_part(
+        if let Some(m) = search_2d_part(
             problem,
             search_str,
             start_x as i32,
@@ -97,10 +95,7 @@ fn search_2d(
             search_step.0,
             search_step.1,
         ) {
-            Some(m) => {
-                matches.push(m);
-            }
-            None => {}
+            matches.push(m);
         }
     }
             

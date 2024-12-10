@@ -19,8 +19,8 @@ pub fn part_2(left: Vec<i64>, right: Vec<i64>) -> i64 {
     // count how many times each number appears in the right list
     let mut right_count = std::collections::HashMap::new();
 
-    for i in 0..right.len() {
-        *right_count.entry(right[i]).or_insert(0) += 1;
+    for item in right {
+        *right_count.entry(item).or_insert(0) += 1;
     }
 
     let mut result = 0;

@@ -28,7 +28,7 @@ fn part_2_safety(report: Vec<i64>) -> bool {
         let locally_increasing = next > curr;
         let abs_diff = next.abs_diff(curr);
 
-        if abs_diff > 3 || abs_diff < 1 {
+        if !(1..=3).contains(&abs_diff) {
             return false;
         }
 
